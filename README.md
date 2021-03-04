@@ -10,7 +10,7 @@
 [mediawiki-1.35.1](https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.1.zip)
 
 ## 三、docker-compose.yml
-```docker-compose
+```compose
 version: '3'
 
 services:
