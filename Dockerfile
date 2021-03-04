@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-RUN apt-get update && apt-get install -y apt-utils g++ git \
+RUN apt-get update && apt-get install -y g++ git \
   	zlib1g-dev \
 	libicu-dev \
   	libmagick++-dev   \
