@@ -5,12 +5,12 @@ RUN apt-get -y update \
 	&& docker-php-ext-configure intl \
 	&& docker-php-ext-install intl
 
-# RUN apt-get update && apt-get install -y \
-#         libfreetype6-dev \
-#         libjpeg62-turbo-dev \
-#         libpng-dev \
-#     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-#     && docker-php-ext-install -j$(nproc) gd
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
 
 RUN pecl install apcu \
 	&& docker-php-ext-install mysqli \
