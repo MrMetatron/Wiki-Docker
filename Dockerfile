@@ -1,7 +1,6 @@
 FROM php:7.4-apache
 
-RUN apt-get -y update \
-	&& apt-get install -y g++ libicu-dev\
+RUN apt-get install -y zlib1g-dev libicu-dev g++ \
 	&& docker-php-ext-configure intl \
 	&& docker-php-ext-install intl
 
