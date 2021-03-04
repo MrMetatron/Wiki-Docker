@@ -1,5 +1,5 @@
 # Wiki-Docker
-## MediaWiki环境要求
+## MediaWiki's System Requirements
 - PHP 7.3.19+
 - MySQL 5.5.8+, MariaDB, SQLite or PostgreSQL
 - 找不到GD库或ImageMagick。缩略图功能将不可用。
