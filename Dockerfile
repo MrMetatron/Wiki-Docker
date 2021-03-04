@@ -27,7 +27,9 @@ RUN apt-get install -y zlib1g-dev libicu-dev g++ git \
   && docker-php-ext-configure intl \
   && docker-php-ext-install intl 
 
+RUN docker-php-ext-install memcache 
+RUN docker-php-ext-install memcached
 RUN pecl install apcu \
 	&& docker-php-ext-install mysqli \
-	&& docker-php-ext-install pdo_mysql \
-	&& docker-php-ext-enable apcu	
+	&& docker-php-ext-install pdo_mysql 
+RUN docker-php-ext-enable apcu memcache memcached
