@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+    mariadb:
+        image: mariadb
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
+        volumes:
+            - ./mysql:/var/lib/mysql
+        expose:
+            - "3306"
+        networks:
+            wiki-network:
+                ipv4_address: 172.16.111.111
+
+    memcached:
+        image: memcached
+        restart: always
+        expose:
+            - "11211"
+        networks:
+            wiki-network:
+                ipv4_address: 172.16.111.112
+        
+    php:
+        build: .
+        restart: always
+        volumes:
+            - ./mediawiki-1.35.1:/var/www/html/
+#        depends_on:
+#            - mariadb
+#            - memcached
+        expose:
+            - "9000"
+        networks:
+            wiki-network:
+                ipv4_address: 172.16.111.113
+    nginx:
+        image: nginx
+        restart: always
+        volumes:
+            - ./etc/nginx/conf.d/:/etc/nginx/conf.d/
+            - ./mediawiki-1.35.1:/usr/share/nginx/html
+        depends_on:
+            - php
+            - mariadb
+            - memcached
+        ports:
+            - "8080:80"
+        networks:
+            wiki-network:
+                ipv4_address: 172.16.111.114
+                
+networks:
+    wiki-network:
+        ipam:
+            config:
+                - subnet: 172.16.111.0/24
